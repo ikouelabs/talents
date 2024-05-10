@@ -1,38 +1,57 @@
-Objectifs
-L'objectif du mini-projet est de développer les apis suivantes:
+# Développement Backend & API
 
-Génération d'utilisateurs
-method: GET
-url: /api/users/generate
-content-type: application/json
-secured: no
-parameters:
+Ce test est conçu pour évaluer les candidatures pour du développement backend/api.
 
+## Objectif
+
+L'objectif du mini-projet est de développer un backend qui expose les apis suivantes:
+
+### Génération d'utilisateurs
+
+**Requête**
+
+```http
+GET /api/users/generate
+Authentification: non
+Paramètres:
 - count: number
   Cet premier endpoint REST permet de générer un fichier json contenant count éléments en respectant la structure suivante:
+```
+
+**Réponse**
+
+```http
+
+Type de réponse: application/json
+
 
 [{
-"firstName": "string",
-"lastName": "string",
-"birthDate": "date",
-"city": "ville",
-"country": "code iso2",
-"avatar": "url d'une image",
-"company": "string",
-"jobPosition": "string",
-"mobile": "numéro de téléphone",
-"username": "identifiant de connexion",
-"email": "adresse email",
-"password": "mot de passe alétoire entre 6 et 10 caractères",
-"role": "admin ou user"
+    "firstName": "string",
+    "lastName": "string",
+    "birthDate": "date",
+    "city": "ville",
+    "country": "code iso2",
+    "avatar": "url d'une image",
+    "company": "string",
+    "jobPosition": "string",
+    "mobile": "numéro de téléphone",
+    "username": "identifiant de connexion",
+    "email": "adresse email",
+    "password": "mot de passe alétoire entre 6 et 10 caractères",
+    "role": "admin ou user"
 }]
-Tous les champs de ce fichier JSON doivent être générés de façon à avoir des résultants vraisemblables en utilisant une librairie Java appropriée. Les contenus tels que "example, test, etc" ne sont pas recevables.
+
+```
+
+Tous les champs de ce fichier JSON doivent être générés de façon à avoir des résultants vraisemblables en utilisant une librairie appropriée (exemple Faker).
+Les contenus tels que "example, test, etc" ne sont pas recevables.
 
 Le champs role doit etre généré en choisissant parmi les deux valeurs role ou admin
 
-En mettant l'URL de cette API dans le navigateur (ex: http://localhost:9090/api/users/generate?count=100 le téléchargement d'un fichier JSON doit être déclenché. Le JSON ne doit pas être affiché sous forme texte dans le navigateur web.
+En mettant l'URL de cette API dans le navigateur (ex: http://localhost:8080/api/users/generate?count=100 le téléchargement d'un fichier JSON doit être déclenché. Le JSON ne doit pas être affiché sous forme texte dans le navigateur web.
 
-Upload du fichier utilisateurs et création des utilisateurs en base de données
+### Upload du fichier utilisateurs et création des utilisateurs en base de données
+
 method: POST
 url: /api/users/batch
 content-type: multipart/form-data
