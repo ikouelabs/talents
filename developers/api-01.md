@@ -50,8 +50,11 @@ Le champs role doit etre généré en choisissant parmi les deux valeurs role ou
 
 En mettant l'URL de cette API dans le navigateur (ex: http://localhost:8080/api/users/generate?count=100 le téléchargement d'un fichier JSON doit être déclenché. Le JSON ne doit pas être affiché sous forme texte dans le navigateur web.
 
-### Upload du fichier utilisateurs et création des utilisateurs en base de données
+### Upload utilisateurs
 
+**Requête**
+
+```
 method: POST
 url: /api/users/batch
 content-type: multipart/form-data
@@ -61,7 +64,9 @@ parameters:
 - file: multipart-file
   Ce second endpoint permet d'uploader le fichier JSON généré en #1. Le fichier doit être importé en base de données en vérifiant les doublons sur l'adresse email et le username (uniques). Une réponse JSON doit être retournée pour résumer le nombre d'enregistrements total, importés avec succès et non importés. Avant l'enregistrement en base de données, le mot de passe doit être encodé et non stocké en clair.
 
-Connexion utilisateur + génération JWT
+
+### Authentification
+
 method: POST
 url: /api/auth
 content-type: application/json
@@ -74,7 +79,9 @@ request-body:
 { "accessToken": "valeur du jeton JWT" }
 Le JWT généré doit contenir l'email de l'utilisateur. Pour s'authentifier, il est possible de renseigner dans le champs username soit le username soit l'email contenu dans le fichier JSON importé.
 
-Consultation de mon profil
+
+### Consultation de profil
+
 method: GET
 url: /api/users/me
 secured: yes
@@ -96,3 +103,4 @@ L'application doit démarrer sans aucune configuration manuelle
 Le projet doit exposer un endpoint Swagger en utilisant https://springdoc.org/
 Tous les endpoints doivent être testables depuis l'interface Swagger
 Des tests unitaires sont fortement souhaités pour les fonctionnalités demandées
+```
